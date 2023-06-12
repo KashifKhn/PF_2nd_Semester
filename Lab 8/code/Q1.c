@@ -16,7 +16,6 @@ int main()
     scanf("%d", &num2);
     printf("Before Swapping\n");
     printf("Num 1: %d,   ", num1);
-    printf("Num 2: %d\n", num2);
     swap(num1, num2);
     printf("After Swapping\n");
     printf("Num 1: %d,  ", num1);

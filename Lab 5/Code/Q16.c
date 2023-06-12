@@ -1,75 +1,50 @@
 #include <stdio.h>
+#include <conio.h>
 
 int main()
 {
-
-    char expression[200];
-    int count = 0, num, result;
-    char op;
-
-    printf("Enter an arithmetic expression (e.g., 2 + 3 + 8 - 3 * 5 - 2 + 7 = ): ");
-
-    // Read the expression into the char array
-    while ((expression[count] = getchar()) != '=')
-        count++;
-
-    // Initialize variables
-    count = 0; // reset the count to reuse
-    num = 0;
-    result = 0;
-    op = '+';
-
-    // Evaluate the expression
-    while (expression[count] != '=')
+    char ch = 'A', sign = '+';
+    int number = 0, result = 0, first = 1;
+    while (ch != '\r' && ch != '=' && ch != '\n')
     {
-        if (expression[count] >= '0' && expression[count] <= '9')
-            num = num * 10 + (expression[count] - '0');
-        
-        else if (expression[count] == '+' || expression[count] == '-' || expression[count] == '*' || expression[count] == '/')
+        ch = getche();
+        if (ch >= '0' && ch <= '9')
         {
-            switch (op)
+            number = number * 10 + (ch - '0');
+        }
+        else if (first == 1)
+        {
+            first = 0;
+            result = number;
+            number = 0;
+            sign = ch;
+        }
+        else
+        {
+            switch (sign)
             {
             case '+':
-                result += num;
+                result += number;
+                sign = ch;
+                number = 0;
                 break;
             case '-':
-                result -= num;
+                result -= number;
+                sign = ch;
+                number = 0;
                 break;
             case '*':
-                result *= num;
+                result *= number;
+                sign = ch;
+                number = 0;
                 break;
             case '/':
-                result /= num;
+                result /= number;
+                sign = ch;
+                number = 0;
                 break;
             }
-
-            num = 0;
-            op = expression[count];
         }
-        count++;
     }
-
-    // Handle the last operand and operator
-
-    switch (op)
-    {
-    case '+':
-        result += num;
-        break;
-    case '-':
-        result -= num;
-        break;
-    case '*':
-        result *= num;
-        break;
-    case '/':
-        result /= num;
-        break;
-    }
-
-    // Display the result
-    printf("Result: %d\n", result);
-
-    return 0;
+    printf("\nResult = %d\n", result);
 }
-

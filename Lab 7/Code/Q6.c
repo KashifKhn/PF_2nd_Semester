@@ -2,23 +2,32 @@
 
 int main()
 {
-    int number;
-    printf("Please Enter the Number: ");
-    scanf("%d",&number);
     int count = 0;
+    int number, dpos = 0, d1pos = 0;
+    printf("Enter the number : ");
+    scanf("%d", &number);
     int tempNum = number;
-    for(int digit=0; digit<=9; digit++)
+    while (tempNum > 0)
     {
-        while (number != 0)
+        dpos++;
+        int d = tempNum % 10;
+        tempNum /= 10;
+        int occ = 0;
+        int temp = number;
+        int d1pos = 0;
+        while (temp > 0)
         {
-            int rem = number % 10;
-            if(digit==rem)
-                count++;
-            number /= 10;
+            d1pos++;
+            int d1 = temp % 10;
+            temp /= 10;
+            if (d == d1)
+            {
+                if (dpos > d1pos)
+                    break;
+                occ++;
+            }
         }
-        if(count != 0)
-            printf("%d = %d times.\n",digit,count);
-        number = tempNum;
-        count = 0;
+        if (occ > 0)
+            printf("%d occurs %d times\n", d, occ);
     }
 }
