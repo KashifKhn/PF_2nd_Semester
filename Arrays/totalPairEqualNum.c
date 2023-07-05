@@ -14,13 +14,25 @@ void printArray(int arr[], int size)
         printf("%d, ", arr[i]);
 }
 
-int findTotalPair(int arr[], int size)
+void findTotalPair(int arr[], int size, int key)
 {
-    int sum = 0;
-    for (int i = 0; i < size; i++)
-            sum += arr[i];
-    return sum;
+   int count = 0;
+    for(int i=0; i<size; i++)
+    {
+        for(int j=i+1; j<size; j++)
+        {
+        
+            if(arr[i] + arr[j] == x)
+            {
+                count++;
+                printf("The pair is %d and %d\n", arr[i], arr[j]);
+            }
+        }
+    }
+
+    printf("The total number of pairs is %d\n", count);
 }
+
 
 int main()
 {
@@ -31,6 +43,10 @@ int main()
     inputArray(arr, size);
     printf("The array is: ");
     printArray(arr, size);
-    printf("\nThe sum of the array is: %d", findTotalPair(arr, size));
+    int key;
+    printf("\nEnter the key: ");
+    scanf("%d", &key);
+    findTotalPair(arr, size, key);
+    
     return 0;
 }

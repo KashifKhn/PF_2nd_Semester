@@ -27,8 +27,9 @@ void sortArray(int arr[], int size)
         }
 }
 
-int Binarysearch(int arr[], int size, int key)
+int BinarySearch(int arr[], int size, int key)
 {
+    sortArray(arr, size);
     int firstIndex = 0, lastIndex = size - 1;
     while (firstIndex <= lastIndex)
     {
@@ -53,10 +54,9 @@ int main()
     int key;
     printf("\nEnter the element to search: ");
     scanf("%d", &key);
-    sortArray(arr, size);
-    if (Binarysearch(arr, size, key) == -1)
+    if (BinarySearch(arr, size, key) == -1)
         printf("Element not found");
     else
-        printf("Element found at index %d", Binarysearch(arr, size, key));
+        printf("Element found at index %d", BinarySearch(arr, size, key));
     return 0;
 }
